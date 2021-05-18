@@ -1,0 +1,109 @@
+.app {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  background-color: lightgrey;
+}
+
+li {
+  list-style-type: none;
+  font-size: 16px;
+  font-weight: 400;
+  min-width: 125px;
+}
+
+li > p {
+  margin: 10px 0px;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+/* COMPONENTS */
+
+.employeeList {
+  width: 50%;
+}
+
+.birthdayList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 125px;
+  color: black;
+  margin: 10px;
+  width: 50%;
+  height: 100vh;
+}
+
+.listTitle {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 900;
+  margin: 10px;
+}
+
+.employeeList > ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.employee {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 125px;
+  color: black;
+  margin: 10px;
+}
+
+.employeeActive {
+  color: seagreen;
+}
+
+.monthActive {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 125px;
+  color: black;
+  margin: 10px;
+}
+
+.monthInactive {
+  display: none;
+}
+
+.fullName {
+  font-size: 18px;
+  font-weight: 900;
+  margin: 5px;
+}
+
+@media all and (max-width: 640px) {
+  .app {
+    flex-direction: column-reverse;
+  }
+
+  .employeeList {
+    width: 100%;
+  }
+
+  .birthdayList {
+    width: 100%;
+  }
+}
+
+@media all and (min-width: 640px) and (max-height: 460px) {
+    .birthdayList {
+        align-items: flex-start;   
+        height: 100vh;
+    }
+}
