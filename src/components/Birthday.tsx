@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { format, parseJSON } from "date-fns";
+import { IEmployee } from "../app/types";
 import styles from "../styles/App.module.css";
 
-export function Birthday(props: {
-  firstName: string;
-  lastName: string;
-}): React.ReactElement {
-  const { firstName, lastName } = props;
-  const [active, setActive] = useState(false);
-  const fullName: string = lastName.concat(" ", firstName);
-
+export function Birthday(props: { employee: IEmployee }): React.ReactElement {
+  const { employee } = props;
+  const fullName: string = employee.lastName.concat(" ", employee.firstName);
 
   return (
-    <div className={active ? styles.employee + " " + styles.employeeActive : styles.employee}>
-    </div>
+    <li className={styles.birthday}>
+      {fullName}&nbsp;-&nbsp;{format(parseJSON(employee.dob), "dd MMMM, yyyy")}
+      &nbsp;year
+    </li>
   );
 }
 

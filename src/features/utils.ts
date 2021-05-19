@@ -1,3 +1,4 @@
+import { getMonth } from "date-fns";
 import { IEmployee, TEmployeeList } from "../app/types";
 
 export function sortByLastName(list: TEmployeeList): TEmployeeList {
@@ -14,4 +15,14 @@ export function sortByLastName(list: TEmployeeList): TEmployeeList {
     return 0;
   });
   return list;
+}
+
+export function sortStaffListArrByCurrentMonth(
+  list: TEmployeeList[]
+): TEmployeeList[] {
+  const currentMonth = getMonth(new Date());
+  if (currentMonth === 0) return list;
+  const preMonths: TEmployeeList[] = list.slice(0, currentMonth);
+  const postMonths: TEmployeeList[] = list.slice(currentMonth);
+  return postMonths.concat(preMonths);
 }

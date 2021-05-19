@@ -64,7 +64,7 @@ export const selectActiveStaff = (state: RootState): TEmployeeList => {
     (id) => state.staff.allStaff.filter((employee) => employee.id === id)[0]
   );
 };
-export const selectStaffOrderedByMob = (state: RootState) => {
+export const selectStaffOrderedByMob = (state: RootState): TEmployeeList[] => {
   const arr = Array.from(Array(12).keys());
   const res: TEmployeeList[] = [];
   arr.forEach(

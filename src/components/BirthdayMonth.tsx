@@ -1,11 +1,19 @@
 import React from "react";
+import { getMonth, parseJSON } from "date-fns";
+import { sortByLastName } from "../features/utils";
 import { TEmployeeList } from "../app/types";
+import Birthday from "./Birthday";
 
 import styles from "../styles/App.module.css";
+import Employee from "./Employee";
 
-export function BirthdayMonth(props: { month: number; staff: TEmployeeList }): React.ReactElement {
+export function BirthdayMonth(props: {
+  month: number;
+  staff: TEmployeeList;
+}): React.ReactElement {
   const { month, staff } = props;
-
+  const sortedStaff = sortByLastName(staff);
+  const displayMonth = getMonth(parseJSON(staff[0].dob));
   const monthNames = [
     "January",
     "February",
@@ -22,14 +30,14 @@ export function BirthdayMonth(props: { month: number; staff: TEmployeeList }): R
   ];
 
   return (
-    <div className={styles.monthActive}>
-      <p className={styles.listTitle}>{monthNames[month]}</p>
-        <ul>
-          {staff.map((employee) => (
-            <li>{employee.lastName}</li>
-          ))}
-        </ul>
-    </div>
+    <li key={month} className={styles.birthdayMonth}>
+      <p className={styles.letterTitle}>{monthNames[displayMonth]}</p>
+      <ul>
+        {sortedStaff.map((employee) => (
+          <Birthday key={employee.id} employee={employee} />
+        ))}
+      </ul>
+    </li>
   );
 }
 

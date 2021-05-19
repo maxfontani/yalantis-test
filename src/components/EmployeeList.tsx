@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import Employee from "./Employee";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
-import {
-  getStaffAsync,
-  selectAllStaff
-} from "../features/staff/staffSlice";
+import { getStaffAsync, selectAllStaff } from "../features/staff/staffSlice";
 
 import styles from "../styles/App.module.css";
 
@@ -22,10 +19,11 @@ export function EmployeeList(): React.ReactElement {
   }
 
   return (
-    <div className={styles.employeeList}>
+    <div className={styles.employeeListContanier}>
       <p className={styles.listTitle}>Employees</p>
+      <hr></hr>
       {staff.length ? (
-        <ul>
+        <ul className={styles.employeeList}>
           {abc.map((letter, index) => {
             const filteredStaff = staff.filter(
               (employee) => employee.lastName[0].toUpperCase() === letter
@@ -33,7 +31,7 @@ export function EmployeeList(): React.ReactElement {
             if (filteredStaff.length)
               return (
                 <li key={letter}>
-                  <p>{letter}</p>
+                  <p className={styles.letterTitle}>{letter}</p>
                   {filteredStaff.map((employee) => (
                     <Employee
                       key={employee.id}
@@ -47,7 +45,7 @@ export function EmployeeList(): React.ReactElement {
             else
               return (
                 <li key={letter}>
-                  <p>{letter}</p>
+                  <p className={styles.letterTitle}>{letter}</p>
                   <p className={styles.fullName}>---</p>
                 </li>
               );
