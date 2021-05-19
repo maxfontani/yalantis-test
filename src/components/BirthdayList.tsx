@@ -18,12 +18,6 @@ export function BirthdayList(): React.ReactElement {
   const staffOrderedByMobFromCurrent =
     orderStaffListArrFromCurrentMonth(staffOrderedByMob);
 
-  async function handlePurge() {
-    dispatch(resetState);
-    // await persistor.purge();
-    alert("Factory reset performed.");
-  }
-
   return (
     <div className={styles.birthdayListContanier}>
       <p className={styles.listTitle}>Employees' Birthdays</p>
@@ -37,7 +31,7 @@ export function BirthdayList(): React.ReactElement {
           )}
           <button
             className={styles.clearButton}
-            onClick={() => dispatch(resetState("RESET I III"))}
+            onClick={() => dispatch(resetState("ResetActive"))}
           >
             Clear all
           </button>
