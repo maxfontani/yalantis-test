@@ -21,7 +21,7 @@ export const getStaffAsync = createAsyncThunk("staff/fetchStaff", async () => {
   return response;
 });
 
-export const counterSlice = createSlice({
+export const staffSlice = createSlice({
   name: "staff",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
@@ -34,6 +34,10 @@ export const counterSlice = createSlice({
       state.activeStaffIds = state.activeStaffIds.filter(
         (id) => id !== action.payload
       );
+    },
+    resetState: (state, action: PayloadAction<string>) => {
+      console.log(action.payload);
+      state.activeStaffIds = initialState.activeStaffIds;
     },
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -50,7 +54,8 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { addActiveEmployee, removeActiveEmployee } = counterSlice.actions;
+export const { addActiveEmployee, removeActiveEmployee, resetState } =
+  staffSlice.actions;
 
 // The functions below are called a selector and allow us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -65,15 +70,16 @@ export const selectActiveStaff = (state: RootState): TEmployeeList => {
   );
 };
 export const selectStaffOrderedByMob = (state: RootState): TEmployeeList[] => {
+  if (!state.staff.activeStaffIds.length) return [];
   const arr = Array.from(Array(12).keys());
-  const res: TEmployeeList[] = [];
+  const orderedStaff: TEmployeeList[] = [];
   arr.forEach(
     (month) =>
-      (res[month] = selectActiveStaff(state).filter(
+      (orderedStaff[month] = selectActiveStaff(state).filter(
         (employee) => getMonth(parseJSON(employee.dob)) === month
       ))
   );
-  return res;
+  return orderedStaff;
 };
 
-export default counterSlice.reducer;
+export default staffSlice.reducer;

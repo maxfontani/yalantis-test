@@ -64,6 +64,7 @@
 
 .birthday {
   list-style-type: disc;
+  font-size: 18px;
 }
 
 .employeeList {
@@ -86,6 +87,26 @@
 
 .employeeActive {
   color: seagreen;
+}
+
+.clearButton {
+  font-family: Consolas;
+  border: 1px solid black;
+  border-radius: 8px;
+  width: 125px;
+  height: 30px;
+  background-color: transparent;
+  margin: 20px;
+  transition: 0.2s;
+}
+
+.clearButton:hover {
+  cursor: pointer;
+  color: aliceblue;
+  background-color: black;
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  transform: scale(1.1);
 }
 
 /* TAGS */

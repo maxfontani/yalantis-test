@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   addActiveEmployee,
   removeActiveEmployee,
+  selectActiveStaffIds,
 } from "../features/staff/staffSlice";
 import styles from "../styles/App.module.css";
 
@@ -12,19 +13,17 @@ export function Employee(props: {
   id: string;
 }): React.ReactElement {
   const { firstName, lastName, id } = props;
-  const [isActive, setIsActive] = useState(false);
   const fullName: string = lastName.concat(" ", firstName);
   const dispatch = useAppDispatch();
+  const activeStaffIds = useAppSelector(selectActiveStaffIds);
+  const isActive: boolean = activeStaffIds.includes(id);
 
   function handleRadioChange(target: EventTarget & HTMLInputElement) {
-    if (target.value === "false") {
-      setIsActive(false);
-      dispatch(removeActiveEmployee(target.id));
-    } else {
-      setIsActive(true);
-      dispatch(addActiveEmployee(target.id));
-    }
+    target.value === "false"
+      ? dispatch(removeActiveEmployee(target.id))
+      : dispatch(addActiveEmployee(target.id));
   }
+
   return (
     <div
       className={
@@ -52,6 +51,7 @@ export function Employee(props: {
           name={fullName}
           value="true"
           onChange={(e) => handleRadioChange(e.target)}
+          checked={isActive}
         />
         <label htmlFor="activeRadio">active</label>
       </div>
