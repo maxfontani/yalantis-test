@@ -5,7 +5,6 @@ import { TEmployeeList } from "../app/types";
 import Birthday from "./Birthday";
 
 import styles from "../styles/App.module.css";
-import Employee from "./Employee";
 
 export function BirthdayMonth(props: {
   month: number;

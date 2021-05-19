@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../app/hooks";
-import { sortStaffListArrByCurrentMonth } from "../features/utils";
+import { orderStaffListArrFromCurrentMonth } from "../features/utils";
 import {
   selectActiveStaffIds,
   selectStaffOrderedByMob,
@@ -13,7 +13,7 @@ export function BirthdayList(): React.ReactElement {
   const activeStaffIds = useAppSelector(selectActiveStaffIds);
   const staffOrderedByMob = useAppSelector(selectStaffOrderedByMob);
   const staffOrderedByMobFromCurrent =
-    sortStaffListArrByCurrentMonth(staffOrderedByMob);
+    orderStaffListArrFromCurrentMonth(staffOrderedByMob);
 
   return (
     <div className={styles.birthdayListContanier}>

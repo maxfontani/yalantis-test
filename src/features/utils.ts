@@ -17,7 +17,7 @@ export function sortByLastName(list: TEmployeeList): TEmployeeList {
   return list;
 }
 
-export function sortStaffListArrByCurrentMonth(
+export function orderStaffListArrFromCurrentMonth(
   list: TEmployeeList[]
 ): TEmployeeList[] {
   const currentMonth = getMonth(new Date());

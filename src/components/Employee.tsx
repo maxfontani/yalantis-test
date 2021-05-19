@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAppDispatch } from "../app/hooks";
 import {
   addActiveEmployee,
-  removeActiveEmployee
+  removeActiveEmployee,
 } from "../features/staff/staffSlice";
 import styles from "../styles/App.module.css";
 
@@ -26,7 +26,13 @@ export function Employee(props: {
     }
   }
   return (
-    <div className={isActive ? styles.employee + " " + styles.employeeActive : styles.employee}>
+    <div
+      className={
+        isActive
+          ? styles.employee + " " + styles.employeeActive
+          : styles.employee
+      }
+    >
       <p className={styles.fullName}>{fullName}</p>
       <div className="radioButton">
         <input
