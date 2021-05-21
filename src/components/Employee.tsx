@@ -18,10 +18,13 @@ export function Employee(props: {
   const activeStaffIds = useAppSelector(selectActiveStaffIds);
   const isActive: boolean = activeStaffIds.includes(id);
 
-  function handleRadioChange(target: EventTarget & HTMLInputElement) {
+  function handleRadioChange(
+    target: EventTarget & HTMLInputElement,
+    id: string
+  ) {
     target.value === "false"
-      ? dispatch(removeActiveEmployee(target.id))
-      : dispatch(addActiveEmployee(target.id));
+      ? dispatch(removeActiveEmployee(id))
+      : dispatch(addActiveEmployee(id));
   }
 
   return (
@@ -36,24 +39,26 @@ export function Employee(props: {
       <div className="radioButton">
         <input
           type="radio"
+          title="not-active-radio"
           id={id}
           name={fullName}
           value="false"
-          onChange={(e) => handleRadioChange(e.target)}
+          onChange={(e) => handleRadioChange(e.target, id)}
           checked={!isActive}
         />
-        <label htmlFor="notActiveRadio">not active</label>
+        <label htmlFor={id}>not active</label>
       </div>
       <div className="radioButton">
         <input
           type="radio"
-          id={id}
+          title="active-radio"
+          id={id + "active"}
           name={fullName}
           value="true"
-          onChange={(e) => handleRadioChange(e.target)}
+          onChange={(e) => handleRadioChange(e.target, id)}
           checked={isActive}
         />
-        <label htmlFor="activeRadio">active</label>
+        <label htmlFor={id + "active"}>active</label>
       </div>
     </div>
   );

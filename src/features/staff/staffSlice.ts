@@ -28,7 +28,7 @@ export const staffSlice = createSlice({
   reducers: {
     // Use the PayloadAction type to declare the contents of `action.payload`
     addActiveEmployee: (state, action: PayloadAction<string>) => {
-      state.activeStaffIds.push(action.payload);
+      action.payload && state.activeStaffIds.push(action.payload);
     },
     removeActiveEmployee: (state, action: PayloadAction<string>) => {
       state.activeStaffIds = state.activeStaffIds.filter(
@@ -36,7 +36,6 @@ export const staffSlice = createSlice({
       );
     },
     resetState: (state, action: PayloadAction<string>) => {
-      console.log(action.payload);
       state.activeStaffIds = initialState.activeStaffIds;
     },
   },
